@@ -1,22 +1,18 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 include('include/config.php');
-if(strlen($_SESSION['id']==0)) {
- header('location:logout.php');
-  } else{
+include('include/checklogin.php');
+check_login();
 date_default_timezone_set('Asia/Kolkata');// change according timezone
 $currentTime = date( 'd-m-Y h:i:s A', time () );
 if(isset($_POST['submit']))
 {
-$cpass=md5($_POST['cpass']);
-$did=$_SESSION['id'];
-$sql=mysqli_query($con,"SELECT password FROM  doctors where password='$cpass' && id='$did'");
+$sql=mysqli_query($con,"SELECT password FROM  users where password='".md5($_POST['cpass'])."' && id='".$_SESSION['id']."'");
 $num=mysqli_fetch_array($sql);
 if($num>0)
 {
-$npass=md5($_POST['npass']);
- $con=mysqli_query($con,"update doctors set password='$npass', updationDate='$currentTime' where id='$did'");
+ $con=mysqli_query($con,"update users set password='".md5($_POST['npass'])."', updationDate='$currentTime' where id='".$_SESSION['id']."'");
 $_SESSION['msg1']="Password Changed Successfully !!";
 }
 else
@@ -28,7 +24,7 @@ $_SESSION['msg1']="Old Password not match !!";
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>Doctor  | change Password</title>
+		<title>User  | change Password</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -90,11 +86,11 @@ return true;
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">Doctor | Change Password</h1>
+									<h1 class="mainTitle">User | Change Password</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>
-										<span>Doctor</span>
+										<span>User</span>
 									</li>
 									<li class="active">
 										<span>Change Password</span>
@@ -207,4 +203,3 @@ return true;
 		<!-- end: CLIP-TWO JAVASCRIPTS -->
 	</body>
 </html>
-<?php } ?>

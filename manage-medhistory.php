@@ -1,6 +1,6 @@
 <?php
 session_start();
-//error_reporting(0);
+error_reporting(0);
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
@@ -9,7 +9,7 @@ check_login();
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>User  | Dashboard</title>
+		<title>Reg Users | View Medical History</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -25,101 +25,88 @@ check_login();
 		<link rel="stylesheet" href="assets/css/styles.css">
 		<link rel="stylesheet" href="assets/css/plugins.css">
 		<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
-
-
 	</head>
 	<body>
 		<div id="app">		
 <?php include('include/sidebar.php');?>
-			<div class="app-content">
-				
-						<?php include('include/header.php');?>
-						
-				<!-- end: TOP NAVBAR -->
-				<div class="main-content" >
-					<div class="wrap-content container" id="container">
+<div class="app-content">
+<?php include('include/header.php');?>
+<div class="main-content" >
+<div class="wrap-content container" id="container">
 						<!-- start: PAGE TITLE -->
-						<section id="page-title">
-							<div class="row">
-								<div class="col-sm-8">
-									<h1 class="mainTitle">User | Dashboard</h1>
-																	</div>
-								<ol class="breadcrumb">
-									<li>
-										<span>User</span>
-									</li>
-									<li class="active">
-										<span>Dashboard</span>
-									</li>
-								</ol>
-							</div>
-						</section>
-						<!-- end: PAGE TITLE -->
-						<!-- start: BASIC EXAMPLE -->
-							<div class="container-fluid container-fullw bg-white">
-							<div class="row">
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">My Profile</h2>
-											
-											<p class="links cl-effect-1">
-												<a href="edit-profile.php">
-													Update Profile
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle">My Appointments</h2>
-										
-											<p class="cl-effect-1">
-												<a href="appointment-history.php">
-													View Appointment History
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-4">
-									<div class="panel panel-white no-radius text-center">
-										<div class="panel-body">
-											<span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-											<h2 class="StepTitle"> Book My Appointment</h2>
-											
-											<p class="links cl-effect-1">
-												<a href="book-appointment.php">
-													Book Appointment
-												</a>
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-			
-					
-					
-						
-						
-					
-						<!-- end: SELECT BOXES -->
-						
-					</div>
-				</div>
-			</div>
+<section id="page-title">
+<div class="row">
+<div class="col-sm-8">
+<h1 class="mainTitle">Users | Medical History</h1>
+</div>
+<ol class="breadcrumb">
+<li>
+<span>Users</span>
+</li>
+<li class="active">
+<span>View Medical History</span>
+</li>
+</ol>
+</div>
+</section>
+<div class="container-fluid container-fullw bg-white">
+<div class="row">
+<div class="col-md-12">
+<h5 class="over-title margin-bottom-15">View <span class="text-bold">Medical History</span></h5>
+	
+<table class="table table-hover" id="sample-table-1">
+<thead>
+<tr>
+<th class="center">#</th>
+<th>Patient Name</th>
+<th>Patient Contact Number</th>
+<th>Patient Gender </th>
+<th>Creation Date </th>
+<th>Updation Date </th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody>
+<?php
+$uid=$_SESSION['id'];
+$sql=mysqli_query($con,"select tblpatient.* from tblpatient join users on users.email=tblpatient.PatientEmail where users.id='$uid'");
+$cnt=1;
+while($row=mysqli_fetch_array($sql))
+{
+?>
+<tr>
+<td class="center"><?php echo $cnt;?>.</td>
+<td class="hidden-xs"><?php echo $row['PatientName'];?></td>
+<td><?php echo $row['PatientContno'];?></td>
+<td><?php echo $row['PatientGender'];?></td>
+<td><?php echo $row['CreationDate'];?></td>
+<td><?php echo $row['UpdationDate'];?>
+</td>
+<td>
+
+<a href="view-medhistory.php?viewid=<?php echo $row['ID'];?>" class="btn btn-info btn-sm">View Details</a>
+
+</td>
+</tr>
+<?php 
+$cnt=$cnt+1;
+ }?></tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 			<!-- start: FOOTER -->
 	<?php include('include/footer.php');?>
 			<!-- end: FOOTER -->
 		
 			<!-- start: SETTINGS -->
 	<?php include('include/setting.php');?>
-			<>
+			
 			<!-- end: SETTINGS -->
 		</div>
 		<!-- start: MAIN JAVASCRIPTS -->
