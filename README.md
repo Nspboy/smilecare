@@ -1,4 +1,4 @@
-# SmileCare - Denatal 
+# SmileCare - Dental 
 
 SmileCare is a web-based Hospital Management System built using PHP and MySQL. It provides comprehensive management for hospitals, doctors, patients, and medical histories. The system is designed to be deployed locally for easy access and management of hospital operations.
 
