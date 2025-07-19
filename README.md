@@ -64,4 +64,4 @@ This project currently does not have a license. Please add one if you intend to 
 
 ---
 
-For any issues or feature requests, please use the GitHub Issues section.
+For any issues or feature requests, please use the GitHub Issues section.. 
