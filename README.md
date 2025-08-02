@@ -6,7 +6,7 @@ SmileCare is a web-based Hospital Management System built using PHP and MySQL. I
 
 - **User Roles:** Supports Admin, Doctor, and Patient roles with independent logins.
 - **Patient Management:** Doctors can add, view, and manage patient records.
-- **Medical History Tracking:** Users can view and manage medical histories linked to patients.
+- **Medical History Tracking:** Users can view and manage medical histories linked to patients. 
 - **Authentication:** Secure login system for all roles.
 - **Responsive UI:** Uses Bootstrap and modern web technologies for a user-friendly interface.
 
