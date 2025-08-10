@@ -13,7 +13,7 @@ SmileCare is a web-based Hospital Management System built using PHP and MySQL. I
 ## Installation & Setup
 
 1. **Download the Project**
-   - Download the zip file of the repository.
+   - Download the zip file of the repository. 
 
 2. **Extract & Copy**
    - Extract the file and copy the `hospital` folder. 
